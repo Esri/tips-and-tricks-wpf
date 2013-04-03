@@ -1,0 +1,31 @@
+﻿<Window x:Class="TileCache.MainWindow"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <esri:Map x:Name="MyMap" UseAcceleratedDisplay="True" ExtentChanged="MyMap_ExtentChanged" >
+            
+            <esri:ArcGISLocalTiledLayer 
+                ID="EastCoastUS" 
+                Path="..\Maps-and-Data\USCitiesStatesEastCoast.tpk"/>
+            
+            <!-- Swap ArcGISLocalTiledLayers to use exploded Tile Cache (folder) instead of Tile Package (.TPK)-->
+            <!--<esri:ArcGISLocalTiledLayer 
+                ID="EastCoastUS" 
+                Path="..\Maps-and-Data\TileCache"/>-->
+            
+            <esri:GraphicsLayer ID="ExtentGraphicsLayer">
+                <esri:GraphicsLayer.MapTip>
+                    <Border Background="White" esri:GraphicsLayer.MapTipAutoPosition="True" BorderBrush="Black" 
+                            BorderThickness="1">
+                        <TextBlock Text="{Binding [MapTipText]}" HorizontalAlignment="Left" FontSize="24" />
+                    </Border>
+                </esri:GraphicsLayer.MapTip>
+            </esri:GraphicsLayer>
+        </esri:Map>
+    </Grid>
+</Window>
+
+
+

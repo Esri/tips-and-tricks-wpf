@@ -1,0 +1,18 @@
+﻿<Window x:Class="PictureMarkerSymbolFromWpf.MainWindow"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>     
+        <esri:Map x:Name="MyMap" UseAcceleratedDisplay="True">
+            <esri:ArcGISTiledMapServiceLayer ID="World Topo Map" 
+                       Url="http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"/>
+            <esri:GraphicsLayer ID="graphicsLayer" x:Name="MarkerGraphicsLayer" />
+        </esri:Map>
+        <Button x:Name="AddGraphicToMap" VerticalAlignment="Top" Width="450" Content="Add Graphic to Map with WPF symbol" 
+                FontSize="24" Click="AddGraphicToMap_Click"/>
+    </Grid>
+</Window>
+
+
+

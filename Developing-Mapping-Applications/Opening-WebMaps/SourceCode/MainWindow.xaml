@@ -1,0 +1,11 @@
+﻿<Window x:Class="OpeningWebMaps.MainWindow"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid x:Name="MainGrid">  
+     </Grid>
+</Window>
+
+
+

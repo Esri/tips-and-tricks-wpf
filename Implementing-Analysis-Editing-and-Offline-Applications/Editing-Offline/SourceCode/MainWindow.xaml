@@ -1,0 +1,63 @@
+﻿<Window x:Class="EditingOffline.MainWindow"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+
+        <esri:Map x:Name="MyMap" WrapAround="True" UseAcceleratedDisplay="True" Grid.Row="0" MinimumResolution="1">
+            <esri:ArcGISLocalTiledLayer
+                ID="BaseLayer" 
+                Path="C:\Program Files (x86)\ArcGIS SDKs\WPF10.1.1\sdk\samples\data\tpks\Topographic.tpk"/>
+
+            <esri:ArcGISLocalFeatureLayer
+                ID="Evacuation Perimeter"
+                DisableClientCaching="True" 
+                AutoSave="False"
+                OutFields="*"
+                MouseLeftButtonUp="FeatureLayer_MouseLeftButtonUp" 
+                Path="..\Maps-and-Data\Fire.mpk"
+                LayerName="Evacuation Perimeter"
+                Editable="True"/>
+
+            <esri:ArcGISLocalFeatureLayer
+                ID="Points of Interest"
+                DisableClientCaching="True" 
+                AutoSave="False"
+                OutFields="*"
+                MouseLeftButtonUp="FeatureLayer_MouseLeftButtonUp"
+                Path="..\Maps-and-Data\Fire.mpk"
+                LayerName="Points of Interest"
+                Editable="True"/>
+        </esri:Map>
+
+        <Border Background="White" BorderThickness="1" HorizontalAlignment="Right"  VerticalAlignment="Top" Padding="5" BorderBrush="DarkGray" Margin="20">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+            <esri:EditorWidget x:Name="MyEditorWidget" Map="{Binding ElementName=MyMap}" Width="300" LayerIDs="Points of Interest,Evacuation Perimeter" 
+                               AutoSelect="False" ShowAttributesOnAdd="True"  />
+        </Border>
+
+        <Border Background="White" BorderThickness="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Padding="5" BorderBrush="DarkGray" Margin="20">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+            <TextBlock x:Name="ResponseTextBlock" Width="400" FontSize="16" TextAlignment="Left" Margin="5" TextWrapping="Wrap" Foreground="Black"  
+                       Text="Two editable feature layers represent points of interest and fire evacuation areas. Use the symbol templates to add new features. Use the tools to modify or delete existing features. Save your edits when finished to commit any updates to the database." />
+        </Border>
+
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
+        <esri:FeatureDataGrid Grid.Row="2" x:Name="MyDataGrid" Map="{Binding ElementName=MyMap}" Initialized="MyDataGrid_Initialized" 
+                              SelectionUnit="FullRow" Foreground="Black"/>
+    </Grid>
+</Window>
+
+
+
